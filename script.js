@@ -26,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function startProposalPage() {
+    const continueBtn = document.getElementById('continueBtn');
+    
+    continueBtn.addEventListener('click', function() {
+        window.location.href = 'Love-Proposal-main/index.html';
+    });
+}
+
+function oldStartProposalPage() {
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
     const responseMessage = document.getElementById('responseMessage');
