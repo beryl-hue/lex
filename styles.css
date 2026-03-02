@@ -1,0 +1,1062 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Playfair Display', 'Mirevique Regalia', serif;
+    overflow-x: hidden;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    position: relative;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+    width: 100%;
+    overflow-y: auto;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animated starry background */
+.stars, .twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.stars {
+    background: #000 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEklEQVQIW2P4//+/MwMDw38AKP4E/96Qy4IAAAAASUVORK5CYII=') repeat top center;
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.twinkling {
+    background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEklEQVQIW2P4DwT/GRgY/gMALQMB/0EZ0YcAAAAASUVORK5CYII=') repeat top center;
+    z-index: 1;
+    animation: move-twink-back 200s linear infinite;
+    opacity: 0.2;
+}
+
+@keyframes move-twink-back {
+    from {background-position: 0 0;}
+    to {background-position: -10000px 5000px;}
+}
+
+/* Heart Placeholders */
+.heart-placeholders {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.placeholder-heart {
+    position: absolute;
+    font-size: 3em;
+    opacity: 0.3;
+    animation: floatAndFade 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 107, 157, 0.8));
+}
+
+.placeholder-heart:nth-child(1) { animation-delay: 0s; animation-duration: 7s; }
+.placeholder-heart:nth-child(2) { animation-delay: 1s; animation-duration: 9s; }
+.placeholder-heart:nth-child(3) { animation-delay: 2s; animation-duration: 8s; }
+.placeholder-heart:nth-child(4) { animation-delay: 0.5s; animation-duration: 7.5s; }
+.placeholder-heart:nth-child(5) { animation-delay: 1.5s; animation-duration: 8.5s; }
+.placeholder-heart:nth-child(6) { animation-delay: 2.5s; animation-duration: 9.5s; }
+.placeholder-heart:nth-child(7) { animation-delay: 0.8s; animation-duration: 7.8s; }
+.placeholder-heart:nth-child(8) { animation-delay: 1.8s; animation-duration: 8.8s; }
+
+@keyframes floatAndFade {
+    0%, 100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 0.2;
+    }
+    25% {
+        transform: translateY(-30px) scale(1.2) rotate(10deg);
+        opacity: 0.4;
+    }
+    50% {
+        transform: translateY(-50px) scale(1.1) rotate(-5deg);
+        opacity: 0.5;
+    }
+    75% {
+        transform: translateY(-30px) scale(1.3) rotate(8deg);
+        opacity: 0.3;
+    }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Heart Image Placeholder */
+.heart-image-placeholder {
+    position: fixed;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    animation: slideInLeft 1s ease-out, gentleFloat 4s ease-in-out infinite 1s;
+}
+
+@keyframes slideInLeft {
+    0% {
+        left: -200px;
+        opacity: 0;
+    }
+    100% {
+        left: 50px;
+        opacity: 1;
+    }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(10px); }
+}
+
+.heart-frame {
+    width: 220px;
+    height: 220px;
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.9), rgba(255, 8, 68, 0.9));
+    box-shadow: 0 0 40px rgba(255, 107, 157, 0.8),
+                0 10px 50px rgba(0, 0, 0, 0.4);
+    padding: 15px;
+    animation: heartPulse 3s ease-in-out infinite;
+    overflow: visible;
+    clip-path: polygon(
+        50% 15%,
+        61% 6%, 72% 4%, 83% 8%, 91% 18%, 94% 31%, 92% 44%,
+        85% 56%, 75% 66%, 63% 76%, 50% 88%,
+        37% 76%, 25% 66%, 15% 56%, 8% 44%, 6% 31%, 9% 18%, 17% 8%, 28% 4%, 39% 6%
+    );
+}
+
+@keyframes heartPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 10px 50px rgba(0, 0, 0, 0.4);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 60px rgba(255, 107, 157, 1), 0 15px 60px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.heart-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    clip-path: polygon(
+        50% 15%,
+        61% 6%, 72% 4%, 83% 8%, 91% 18%, 94% 31%, 92% 44%,
+        85% 56%, 75% 66%, 63% 76%, 50% 88%,
+        37% 76%, 25% 66%, 15% 56%, 8% 44%, 6% 31%, 9% 18%, 17% 8%, 28% 4%, 39% 6%
+    );
+}
+
+.image-label {
+    text-align: center;
+    color: #fff;
+    font-size: 2em;
+    margin-top: 15px;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+    animation: labelGlow 2s ease-in-out infinite;
+}
+
+@keyframes labelGlow {
+    0%, 100% { text-shadow: 0 0 20px rgba(255, 107, 157, 0.8); }
+    50% { text-shadow: 0 0 40px rgba(255, 107, 157, 1), 0 0 60px rgba(255, 8, 68, 0.8); }
+}
+
+/* Animated heart */
+.heart-container {
+    margin-bottom: 30px;
+}
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 90px;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 52px;
+    height: 80px;
+    border-radius: 50px 50px 0 0;
+    background: #ff6b9d;
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+}
+
+.heart:before {
+    left: 50px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    10%, 30% { transform: scale(1.1); }
+    20%, 40% { transform: scale(1); }
+}
+
+/* Content styling */
+.content {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 50px 40px;
+    border-radius: 30px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4),
+                inset 0 0 40px rgba(255, 255, 255, 0.1),
+                inset 0 0 120px rgba(255, 107, 157, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.05) 2px, rgba(255, 255, 255, 0.05) 4px),
+        repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255, 255, 255, 0.05) 2px, rgba(255, 255, 255, 0.05) 4px);
+    pointer-events: none;
+    border-radius: 30px;
+}
+
+.content > * {
+    position: relative;
+    z-index: 1;
+}
+    text-align: center;
+    max-width: 650px;
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.content::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b9d, #feca57, #48dbfb, #ff9ff3);
+    border-radius: 30px;
+    z-index: -1;
+    opacity: 0.6;
+    filter: blur(15px);
+    animation: borderGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes borderGlow {
+    0% { opacity: 0.4; }
+    100% { opacity: 0.8; }
+}
+
+h1 {
+    font-size: 3.2em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff6b9d, #feca57, #ff9ff3, #ff6b9d);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    animation: gradientText 4s ease infinite;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
+    text-align: center;
+}
+
+@keyframes gradientText {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+#herName {
+    background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 900;
+    font-size: 1.3em;
+    text-decoration: none;
+    text-shadow: none;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
+            drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+            drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+    animation: nameShine 2s linear infinite;
+    display: inline-block;
+    padding: 0 10px;
+}
+
+@keyframes nameShine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+p {
+    font-size: 1.2em;
+    color: #fff;
+    margin: 25px 0;
+    line-height: 1.8;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    letter-spacing: 0.5px;
+}
+
+.question-box {
+    margin-top: 40px;
+    padding: 35px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.85) 0%, rgba(255, 107, 157, 0.85) 100%);
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5),
+                0 0 80px rgba(255, 215, 0, 0.3),
+                inset 0 0 30px rgba(255, 255, 255, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    transform: perspective(1000px) rotateX(0deg);
+    animation: boxFloat 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+    
+.question-box::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        repeating-conic-gradient(from 45deg at 0% 0%, transparent 0deg 90deg, rgba(255, 255, 255, 0.08) 90deg 180deg),
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.05) 2px, rgba(255, 255, 255, 0.05) 4px);
+    pointer-events: none;
+    border-radius: 25px;
+}
+
+@keyframes boxFloat {
+    0%, 100% { 
+        transform: perspective(1000px) rotateX(0deg) translateY(0px);
+        box-shadow: 0 15px 50px rgba(255, 107, 157, 0.5), 0 0 80px rgba(255, 215, 0, 0.3);
+    }
+    50% { 
+        transform: perspective(1000px) rotateX(2deg) translateY(-10px);
+        box-shadow: 0 25px 70px rgba(255, 107, 157, 0.7), 0 0 100px rgba(255, 215, 0, 0.5);
+    }
+}
+
+.question-box h2 {
+    font-size: 2.4em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 0 20px rgba(214, 48, 49, 0.8),
+                 0 0 40px rgba(214, 48, 49, 0.5),
+                 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Touch device optimizations - disable hover on touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .yes-btn::before {
+        display: none;
+    }
+    
+    .yes-btn:hover::before {
+        display: none;
+    }
+    
+    .yes-btn:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 10px 30px rgba(255, 8, 68, 0.5),
+                    0 0 20px rgba(255, 107, 157, 0.4);
+    }
+    
+    .yes-btn:active {
+        transform: translateY(0) scale(0.98);
+    }
+    
+    .no-btn:active {
+        background: #a2abb3;
+    }
+}
+
+button {
+    padding: 18px 50px;
+    font-size: 1.3em;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.yes-btn {
+    background: linear-gradient(135deg, #ff0844 0%, #ff6b9d 50%, #ff0844 100%);
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 10px 40px rgba(255, 8, 68, 0.5),
+                0 0 20px rgba(255, 107, 157, 0.4);
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.yes-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.yes-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.yes-btn:hover {
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 0 20px 60px rgba(255, 8, 68, 0.8),
+                0 0 40px rgba(255, 107, 157, 0.6);
+    letter-spacing: 2px;
+}
+
+.no-btn {
+    background: linear-gradient(135deg, #b2bec3, #636e72);
+    color: white;
+    box-shadow: 0 5px 15px rgba(99, 110, 114, 0.4);
+    position: relative;
+    border: none;
+}
+
+.no-btn:hover {
+    background: #b2bec3;
+}
+
+.response-message {
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: bold;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.response-message.success {
+    color: #00b894;
+    animation: bounceIn 0.8s ease;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Floating hearts animation */
+.floating-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Fade in animations */
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+.fade-in-delay-1 {
+    animation: fadeIn 1s ease-in 0.3s backwards;
+}
+
+.fade-in-delay-2 {
+    animation: fadeIn 1s ease-in 0.6s backwards;
+}
+
+.fade-in-delay-3 {
+    animation: fadeIn 1s ease-in 0.9s backwards;
+}
+
+.fade-in-delay-4 {
+    animation: fadeIn 1s ease-in 1.2s backwards;
+}
+
+.fade-in-delay-5 {
+    animation: fadeIn 1s ease-in 1.5s backwards;
+}
+
+.fade-in-delay-6 {
+    animation: fadeIn 1s ease-in 1.8s backwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Fireworks */
+.fireworks {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.4em;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+    
+    p {
+        font-size: 1.15em;
+        font-family: 'Playfair Display', serif;
+        line-height: 1.7;
+        letter-spacing: 0.5px;
+    }
+    
+    .question-box h2 {
+        font-size: 1.7em;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        letter-spacing: 1px;
+    }
+    
+    .content {
+        padding: 35px 25px;
+        border-radius: 22px;
+    }
+    
+    button {
+        padding: 16px 35px;
+        font-size: 1.1em;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    
+    .heart-image-placeholder {
+        position: static;
+        transform: none;
+        margin: 20px auto;
+        animation: fadeIn 1s ease-out;
+    }
+    
+    .heart-frame {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 2.5em;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+    }
+    
+    p {
+        font-size: 1.15em;
+        line-height: 1.7;
+        margin: 18px 0;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+    
+    .container {
+        padding: 25px 15px;
+        max-width: 100%;
+    }
+    
+    .content {
+        padding: 35px 20px;
+        border-radius: 25px;
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(15px) saturate(180%);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                    inset 0 0 30px rgba(255, 107, 157, 0.25);
+    }
+    
+    .heart-container {
+        width: 140px;
+        height: 140px;
+        margin: 25px auto;
+    }
+    
+    .heart {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .question-box {
+        margin-top: 40px;
+        padding: 30px 20px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 107, 157, 0.9) 100%);
+        border: 3px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 15px 50px rgba(255, 107, 157, 0.6),
+                    0 0 40px rgba(255, 215, 0, 0.4),
+                    inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    
+    .question-box h2 {
+        font-size: 1.8em;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+        margin-bottom: 30px;
+        letter-spacing: 1px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 30px;
+    }
+    
+    .yes-btn, .no-btn {
+        width: 100%;
+        padding: 20px 25px;
+        font-size: 1.2em;
+        min-height: 56px;
+        border-radius: 15px;
+        touch-action: manipulation;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    
+    .yes-btn {
+        background: linear-gradient(135deg, #ff0844 0%, #ff6b9d 50%, #ff0844 100%);
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 12px 35px rgba(255, 8, 68, 0.6),
+                    0 0 25px rgba(255, 107, 157, 0.5);
+        animation: shimmer 2s linear infinite;
+    }
+    
+    .yes-btn:active {
+        transform: scale(0.97);
+    }
+    
+    .no-btn {
+        background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        color: white;
+        box-shadow: 0 8px 20px rgba(99, 110, 114, 0.5);
+    }
+    
+    .no-btn:active {
+        background: linear-gradient(135deg, #7f8c8d, #6c7a7d);
+    }
+    
+    .response-message {
+        font-size: 1.3em;
+        margin-top: 25px;
+        padding: 25px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+    }
+    
+    /* Birthday page mobile */
+    .birthday-page {
+        padding: 0;
+    }
+    
+    .birthday-content {
+        padding: 50px 25px;
+        border-radius: 25px;
+        max-width: 95vw;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                    inset 0 0 30px rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+    }
+    
+    .birthday-content h1 {
+        font-size: 2.8em;
+        margin-bottom: 28px;
+        letter-spacing: 1.5px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 900;
+    }
+    
+    .birthday-content p {
+        font-size: 1.2em;
+        margin-bottom: 18px;
+        line-height: 1.8;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+    
+    .birthday-heart-animation {
+        font-size: 5em;
+        margin-bottom: 25px;
+        animation: bounce 1s ease-in-out infinite;
+    }
+    
+    .birthday-btn {
+        padding: 20px 35px;
+        font-size: 1.2em;
+        width: 90%;
+        margin-top: 28px;
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        letter-spacing: 1px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    }
+    
+    .birthday-btn:active {
+        transform: scale(0.96);
+    }
+    
+    .placeholder-heart {
+        font-size: 2em;
+    }
+    
+    .heart-placeholders {
+        display: none;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 2.2em;
+        letter-spacing: 1px;
+    }
+    
+    p {
+        font-size: 1.05em;
+        line-height: 1.7;
+    }
+    
+    .birthday-content h1 {
+        font-size: 2.4em;
+        letter-spacing: 1px;
+    }
+    
+    .birthday-content p {
+        font-size: 1.1em;
+        line-height: 1.7;
+    }
+    
+    .yes-btn, .no-btn {
+        font-size: 1.1em;
+        padding: 18px 20px;
+        min-height: 52px;
+        border-radius: 12px;
+    }
+    
+    .question-box {
+        padding: 25px 18px;
+        margin-top: 30px;
+    }
+    
+    .question-box h2 {
+        font-size: 1.6em;
+    }
+    
+    .content {
+        padding: 30px 18px;
+    }
+    
+    .birthday-btn {
+        padding: 18px 30px;
+        font-size: 1.1em;
+        width: 85%;
+    }
+    
+    .birthday-heart-animation {
+        font-size: 4.5em;
+    }
+}
+
+/* Ensure text is selectable in content sections */
+.content, 
+.birthday-content,
+.response-message,
+p, 
+h1, 
+h2 {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Birthday Page Styles */
+.birthday-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.birthday-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+}
+
+.birthday-content {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 60px 40px;
+    border-radius: 30px;
+    backdrop-filter: blur(15px) saturate(180%);
+    animation: slideIn 0.8s ease-out;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3),
+                inset 0 0 40px rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+}
+
+.birthday-content h1 {
+    font-size: 3.8em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, #ff1493, #ff69b4, #ffb6c1, #ff1493);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 1s ease-out, gradientText 4s ease infinite;
+    letter-spacing: 2px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.birthday-content p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    line-height: 1.7;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.2s ease-out;
+    font-family: 'Playfair Display', 'Georgia', serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.birthday-heart-animation {
+    font-size: 6em;
+    margin-bottom: 30px;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.birthday-btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.4em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.birthday-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.birthday-btn:hover {
+    transform: scale(1.12) translateY(-3px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.birthday-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
+}
