@@ -1,22 +1,40 @@
 // ⚠️ CHANGE THE NAME HERE ⚠️
 const HER_NAME = "Bianca";  // 👈 Replace "Beautiful" with her actual name
 
+// ⚠️ CHANGE THE UNLOCK CODE HERE ⚠️
+const UNLOCK_CODE = "2019-2026";  // 👈 Replace with your desired unlock code
+
+// Crash variable - uses localStorage to persist across page reloads
+let crash = localStorage.getItem('crash') === 'true';
+
 // Set the name on page load
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('herName').textContent = HER_NAME;
-    document.getElementById('herNameBday').textContent = HER_NAME;
+    const herNameEl = document.getElementById('herName');
+    if (herNameEl) {
+        herNameEl.textContent = HER_NAME;
+    }
     createFloatingHearts();
     
-    // Show birthday page first, then proposal
-    document.getElementById('birthdayPage').style.display = 'flex';
-    document.getElementById('proposalPage').style.display = 'none';
-    
-    // Birthday button handler
-    document.getElementById('birthdayBtn').addEventListener('click', function() {
+    // Check if system has crashed, if so, show maintenance page directly
+    if (crash) {
+        document.getElementById('maintenancePage').style.display = 'flex';
         document.getElementById('birthdayPage').style.display = 'none';
-        document.getElementById('proposalPage').style.display = 'block';
-        startProposalPage();
-    });
+        document.getElementById('codeUnlockPage').style.display = 'none';
+        document.getElementById('proposalPage').style.display = 'none';
+    } else {
+        // Show birthday page first
+        document.getElementById('birthdayPage').style.display = 'flex';
+        document.getElementById('proposalPage').style.display = 'none';
+        document.getElementById('codeUnlockPage').style.display = 'none';
+        document.getElementById('maintenancePage').style.display = 'none';
+        
+        // Birthday button handler
+        document.getElementById('birthdayBtn').addEventListener('click', function() {
+            document.getElementById('birthdayPage').style.display = 'none';
+            document.getElementById('codeUnlockPage').style.display = 'flex';
+            startCodeUnlock();
+        });
+    }
     
     // Auto-play music
     const bgMusic = document.getElementById('bgMusic');
@@ -24,6 +42,57 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Autoplay prevented:', err);
     });
 });
+
+function startCodeUnlock() {
+    const codeInput = document.getElementById('codeInput');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const codeError = document.getElementById('codeError');
+    
+    // Allow Enter key to unlock
+    codeInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            verifyCode();
+        }
+    });
+    
+    unlockBtn.addEventListener('click', function() {
+        verifyCode();
+    });
+    
+    function verifyCode() {
+        const enteredCode = codeInput.value.trim().toUpperCase();
+        
+        if (enteredCode === UNLOCK_CODE.toUpperCase()) {
+            // Code is correct!
+            codeError.style.display = 'none';
+            codeInput.style.display = 'none';
+            unlockBtn.style.display = 'none';
+            
+            // Show success message and transition to proposal page
+            const unlockContent = document.querySelector('.unlock-content');
+            unlockContent.innerHTML = `
+                <div class="unlock-heart-animation">💕</div>
+                <h1>Correct! 🎉</h1>
+                <p>You unlocked your special message...</p>
+            `;
+            
+            // Transition to proposal page after 2 seconds
+            setTimeout(function() {
+                document.getElementById('codeUnlockPage').style.display = 'none';
+                document.getElementById('proposalPage').style.display = 'block';
+                startProposalPage();
+            }, 2000);
+        } else {
+            // Code is incorrect - set crash to true
+            crash = true;
+            localStorage.setItem('crash', 'true');
+            
+            // Show maintenance page
+            document.getElementById('codeUnlockPage').style.display = 'none';
+            document.getElementById('maintenancePage').style.display = 'flex';
+        }
+    }
+}
 
 function startProposalPage() {
     const continueBtn = document.getElementById('continueBtn');
