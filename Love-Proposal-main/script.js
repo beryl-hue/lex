@@ -29,6 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show first proposal
     showProposal('proposal-1');
     
+    // Resume music if coming from previous page
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic && localStorage.getItem('musicPlaying') === 'true') {
+        bgMusic.play().catch(err => {
+            console.log('Music play error:', err);
+        });
+        localStorage.removeItem('musicPlaying');
+    }
+    
     // Setup move-random button
     const moveRandomBtn = document.getElementById('move-random');
     if (moveRandomBtn) {

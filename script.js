@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (herNameEl) {
         herNameEl.textContent = HER_NAME;
     }
+    
+    // Keep bgMusic muted during birthday section
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+        bgMusic.muted = true;
+    }
     createFloatingHearts();
     
     // Check if system has crashed, if so, show maintenance page directly
@@ -27,20 +33,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('proposalPage').style.display = 'none';
         document.getElementById('codeUnlockPage').style.display = 'none';
         document.getElementById('maintenancePage').style.display = 'none';
+
+        // Unmute birthday music
+        const birthdayMusic = document.getElementById('birthdayMusic');
+        if (birthdayMusic) {
+            birthdayMusic.muted = false;
+        }
         
         // Birthday button handler
         document.getElementById('birthdayBtn').addEventListener('click', function() {
+            // Stop birthday music when continuing
+            birthdayMusic.pause();
+            birthdayMusic.currentTime = 0;
+            
             document.getElementById('birthdayPage').style.display = 'none';
             document.getElementById('codeUnlockPage').style.display = 'flex';
             startCodeUnlock();
         });
     }
     
-    // Auto-play music
-    const bgMusic = document.getElementById('bgMusic');
-    bgMusic.play().catch(err => {
-        console.log('Autoplay prevented:', err);
-    });
+    // Music will start after code is unlocked
 });
 
 function startCodeUnlock() {
@@ -67,6 +79,19 @@ function startCodeUnlock() {
             codeError.style.display = 'none';
             codeInput.style.display = 'none';
             unlockBtn.style.display = 'none';
+            
+            // Unmute and play background music after unlocking letter
+            const bgMusic = document.getElementById('bgMusic');
+            const birthdayMusic = document.getElementById('birthdayMusic');
+            if (bgMusic) {
+                bgMusic.muted = false;
+                bgMusic.play().catch(err => {
+                    console.log('Music play prevented:', err);
+                });
+            }
+            if (birthdayMusic) {
+                birthdayMusic.pause();
+            }
             
             // Show success message and transition to proposal page
             const unlockContent = document.querySelector('.unlock-content');
@@ -98,6 +123,12 @@ function startProposalPage() {
     const continueBtn = document.getElementById('continueBtn');
     
     continueBtn.addEventListener('click', function() {
+        // Store current music playback position
+        const bgMusic = document.getElementById('bgMusic');
+        if (bgMusic && !isNaN(bgMusic.currentTime)) {
+            localStorage.setItem('musicCurrentTime', bgMusic.currentTime);
+        }
+        localStorage.setItem('musicPlaying', 'true');
         window.location.href = 'Love-Proposal-main/index.html';
     });
 }
