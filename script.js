@@ -49,12 +49,12 @@ function continueBirthday() {
     console.log('continueBirthday() called');
     
     const birthdayMusic = document.getElementById('birthdayMusic');
+    const welcomePage = document.getElementById('welcomePage');
     const birthdayPage = document.getElementById('birthdayPage');
     const codeUnlockPage = document.getElementById('codeUnlockPage');
+    const maintenancePage = document.getElementById('maintenancePage');
     
-    console.log('birthdayMusic:', birthdayMusic);
-    console.log('birthdayPage:', birthdayPage);
-    console.log('codeUnlockPage:', codeUnlockPage);
+    console.log('continueBirthday executing');
     
     // Stop birthday music
     if (birthdayMusic) {
@@ -63,10 +63,20 @@ function continueBirthday() {
         console.log('Birthday music paused');
     }
     
-    // Hide birthday page
+    // Hide all pages
+    if (welcomePage) {
+        welcomePage.style.display = 'none';
+        console.log('Set welcomePage to none');
+    }
+    
     if (birthdayPage) {
         birthdayPage.style.display = 'none';
         console.log('Set birthdayPage to none');
+    }
+    
+    if (maintenancePage) {
+        maintenancePage.style.display = 'none';
+        console.log('Set maintenancePage to none');
     }
     
     // Show code unlock page

@@ -884,16 +884,12 @@ button {
         padding-top: 2rem;
     }
     
-    .welcome-content {
-        gap: 1.5rem;
-        padding: 2rem 1.5rem;
+    .welcome-page[style*="display: none"] {
+        display: none !important;
+        z-index: -1 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
-    
-    .birthday-content {
-        padding: 50px 25px;
-        border-radius: 25px;
-        max-width: 95vw;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
                     inset 0 0 30px rgba(255, 255, 255, 0.15);
         border: 2px solid rgba(255, 255, 255, 0.35);
     }
@@ -1392,6 +1388,12 @@ h2 {
 .code-unlock-page[style*="display: flex"] {
     display: flex !important;
     z-index: 2000 !important;
+}
+
+.code-unlock-page[style*="display: flex"] ~ .welcome-page,
+.code-unlock-page[style*="display: flex"] ~ .birthday-page {
+    display: none !important;
+    z-index: -1 !important;
 }
 
 .code-unlock-page::before {
