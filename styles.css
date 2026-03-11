@@ -876,6 +876,18 @@ button {
     /* Birthday page mobile */
     .birthday-page {
         padding: 0;
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .welcome-page {
+        justify-content: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .welcome-content {
+        gap: 1.5rem;
+        padding: 2rem 1.5rem;
     }
     
     .birthday-content {
