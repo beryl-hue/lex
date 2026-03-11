@@ -21,7 +21,6 @@ body {
     -webkit-user-select: none;
     user-select: none;
     -webkit-touch-callout: none;
-    touch-action: manipulation;
 }
 
 @keyframes gradientShift {
@@ -1081,16 +1080,18 @@ h2 {
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     display: flex !important;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     z-index: 2000;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+    padding-top: 2rem;
 }
 
 .welcome-page::-webkit-scrollbar {
@@ -1108,6 +1109,8 @@ h2 {
     padding: 3rem 2rem;
     position: relative;
     pointer-events: auto;
+    width: 100%;
+    min-height: 100vh;
 }
 
 .gift-box {
@@ -1209,16 +1212,18 @@ h2 {
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     display: none;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     z-index: 2000;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+    padding-top: 2rem;
 }
 
 .birthday-page::-webkit-scrollbar {
@@ -1269,6 +1274,8 @@ h2 {
     position: relative;
     z-index: 10;
     max-width: 600px;
+    width: 90%;
+    margin: 50px auto;
 }
 
 .birthday-content h1 {
