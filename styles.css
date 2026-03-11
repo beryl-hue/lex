@@ -139,7 +139,7 @@ body {
     min-height: min-content;
     padding-top: 1rem;
     padding-bottom: 3rem;
-    margin-top: 6rem;
+    margin-top: max(4rem, 10vh);
 }
 
 /* Welcome Page */
@@ -159,7 +159,7 @@ body {
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1);
-    margin-top: 6rem;
+    margin-top: max(4rem, 10vh);
 }
 
 /* Code Unlock Page */
@@ -173,7 +173,7 @@ body {
     border-radius: 30px;
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    margin-top: 6rem;
+    margin-top: max(4rem, 10vh);
 }
 
 /* Proposal Page */
@@ -295,6 +295,21 @@ p {
 }
 
 /* Responsive */
+/* Large screens */
+@media (min-width: 1024px) {
+    .page-content {
+        margin-top: max(5rem, 12vh);
+    }
+}
+
+/* Tablets and medium screens */
+@media (max-width: 1023px) and (min-width: 769px) {
+    .page-content {
+        margin-top: max(4.5rem, 11vh);
+    }
+}
+
+/* Small tablets and landscape phones */
 @media (max-width: 768px) {
     .page {
         padding: 1.5rem;
@@ -321,17 +336,17 @@ p {
     
     .page-content {
         padding: 1.5rem;
-        margin-top: 4rem;
+        margin-top: max(3.5rem, 9vh);
     }
     
     #birthdayPage .page-content {
         padding: 30px 20px;
-        margin-top: 4rem;
+        margin-top: max(3.5rem, 9vh);
     }
     
     #codeUnlockPage .page-content {
         padding: 25px 20px;
-        margin-top: 4rem;
+        margin-top: max(3.5rem, 9vh);
     }
     
     .code-input {
@@ -343,7 +358,6 @@ p {
         max-width: 300px;
     }
 }
-
 @media (max-width: 480px) {
     .page {
         padding: 1rem;
@@ -369,11 +383,47 @@ p {
     
     .page-content {
         padding: 1rem;
-        margin-top: 3rem;
+        margin-top: max(2.5rem, 8vh);
+    }
+    
+    #birthdayPage .page-content {
+        padding: 20px 15px;
+        margin-top: max(2.5rem, 8vh);
+    }
+    
+    #codeUnlockPage .page-content {
+        padding: 20px 15px;
+        margin-top: max(2.5rem, 8vh);
     }
     
     .btn-primary {
         padding: 14px 30px;
         font-size: 1em;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.7em;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        font-size: 0.95em;
+    }
+    
+    .emoji-xl {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+    
+    .page-content {
+        margin-top: max(2rem, 7vh);
+    }
+    
+    #birthdayPage .page-content {
+        padding: 20px 12px;
+        margin-top: max(2rem, 7vh);
     }
 }
