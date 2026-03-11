@@ -126,7 +126,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: max(4rem, env(safe-area-inset-top));
+    padding-top: 0;
     padding-bottom: max(2rem, env(safe-area-inset-bottom));
 }
 
@@ -139,7 +139,7 @@ body {
     min-height: min-content;
     padding-top: 1rem;
     padding-bottom: 3rem;
-    margin-top: 2rem;
+    margin-top: 6rem;
 }
 
 /* Welcome Page */
@@ -159,7 +159,7 @@ body {
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1);
-    margin-top: 2rem;
+    margin-top: 6rem;
 }
 
 /* Code Unlock Page */
@@ -173,7 +173,7 @@ body {
     border-radius: 30px;
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    margin-top: 2rem;
+    margin-top: 6rem;
 }
 
 /* Proposal Page */
@@ -301,7 +301,7 @@ p {
     }
     
     .page.active {
-        padding-top: max(3rem, env(safe-area-inset-top));
+        padding-top: 0;
         padding-bottom: max(2rem, env(safe-area-inset-bottom));
     }
     
@@ -321,17 +321,17 @@ p {
     
     .page-content {
         padding: 1.5rem;
-        margin-top: 1.5rem;
+        margin-top: 4rem;
     }
     
     #birthdayPage .page-content {
         padding: 30px 20px;
-        margin-top: 1.5rem;
+        margin-top: 4rem;
     }
     
     #codeUnlockPage .page-content {
         padding: 25px 20px;
-        margin-top: 1.5rem;
+        margin-top: 4rem;
     }
     
     .code-input {
@@ -350,7 +350,7 @@ p {
     }
     
     .page.active {
-        padding-top: max(2.5rem, env(safe-area-inset-top));
+        padding-top: 0;
         padding-bottom: max(2rem, env(safe-area-inset-bottom));
     }
     
@@ -369,7 +369,7 @@ p {
     
     .page-content {
         padding: 1rem;
-        margin-top: 1rem;
+        margin-top: 3rem;
     }
     
     .btn-primary {
