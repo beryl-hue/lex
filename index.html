@@ -39,15 +39,26 @@
         <div class="placeholder-heart" style="top: 70%; left: 50%;">💘</div>
     </div>
     
+    <!-- Welcome Page -->
+    <div class="welcome-page" id="welcomePage">
+        <div class="welcome-content">
+            <div class="gift-box">🎁</div>
+            <h1>I have something special for you...</h1>
+            <p>Click to unwrap your birthday surprise! 🎉</p>
+            <button class="welcome-btn" id="welcomeBtn" onclick="unwrapGift()">Unwrap 💕</button>
+            <p class="headphones-note">🎧 For better experience, use headphones!</p>
+        </div>
+    </div>
+    
     <!-- Birthday Page -->
-    <div class="birthday-page" id="birthdayPage">
+    <div class="birthday-page" id="birthdayPage" style="display: none;">
         <div class="birthday-content">
             <div class="birthday-heart-animation">🎂</div>
             <h1>Happy Birthday! 🎉</h1>
             <p>Today is a special day because you were born, and the world became a more beautiful place.</p>
             <p>Every moment with you is a gift, and I'm so grateful for you.</p>
             <p>Have the most amazing birthday celebration! 🎊💕</p>
-            <button class="birthday-btn" id="birthdayBtn">Let's Continue... 💖</button>
+            <button class="birthday-btn" id="birthdayBtn" onclick="continueBirthday()">Let's Continue... 💖</button>
         </div>
     </div>
     

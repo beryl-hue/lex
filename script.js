@@ -7,6 +7,78 @@ const UNLOCK_CODE = "2019-2026";  // 👈 Replace with your desired unlock code
 // Crash variable - uses localStorage to persist across page reloads
 let crash = localStorage.getItem('crash') === 'true';
 
+// Function to unwrap the gift
+function unwrapGift() {
+    console.log('unwrapGift() called');
+    const welcomePage = document.getElementById('welcomePage');
+    const birthdayPage = document.getElementById('birthdayPage');
+    
+    console.log('welcomePage:', welcomePage);
+    console.log('birthdayPage:', birthdayPage);
+    
+    if (welcomePage) {
+        welcomePage.style.display = 'none';
+        console.log('Set welcomePage to none');
+    }
+    
+    if (birthdayPage) {
+        birthdayPage.style.display = 'flex';
+        console.log('Set birthdayPage to flex');
+    }
+    
+    // Play birthday music
+    const birthdayMusic = document.getElementById('birthdayMusic');
+    console.log('birthdayMusic:', birthdayMusic);
+    
+    if (birthdayMusic) {
+        birthdayMusic.muted = false;
+        birthdayMusic.currentTime = 0;
+        const playPromise = birthdayMusic.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(err => {
+                console.error('Birthday music play error:', err);
+            }).then(() => {
+                console.log('Music started');
+            });
+        }
+    }
+}
+
+// Function to continue from birthday to code unlock
+function continueBirthday() {
+    console.log('continueBirthday() called');
+    
+    const birthdayMusic = document.getElementById('birthdayMusic');
+    const birthdayPage = document.getElementById('birthdayPage');
+    const codeUnlockPage = document.getElementById('codeUnlockPage');
+    
+    console.log('birthdayMusic:', birthdayMusic);
+    console.log('birthdayPage:', birthdayPage);
+    console.log('codeUnlockPage:', codeUnlockPage);
+    
+    // Stop birthday music
+    if (birthdayMusic) {
+        birthdayMusic.pause();
+        birthdayMusic.currentTime = 0;
+        console.log('Birthday music paused');
+    }
+    
+    // Hide birthday page
+    if (birthdayPage) {
+        birthdayPage.style.display = 'none';
+        console.log('Set birthdayPage to none');
+    }
+    
+    // Show code unlock page
+    if (codeUnlockPage) {
+        codeUnlockPage.style.display = 'flex';
+        console.log('Set codeUnlockPage to flex');
+    }
+    
+    // Initialize code unlock
+    startCodeUnlock();
+}
+
 // Set the name on page load
 document.addEventListener('DOMContentLoaded', function() {
     const herNameEl = document.getElementById('herName');
@@ -24,48 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if system has crashed, if so, show maintenance page directly
     if (crash) {
         document.getElementById('maintenancePage').style.display = 'flex';
+        document.getElementById('welcomePage').style.display = 'none';
         document.getElementById('birthdayPage').style.display = 'none';
         document.getElementById('codeUnlockPage').style.display = 'none';
         document.getElementById('proposalPage').style.display = 'none';
     } else {
-        // Show birthday page first
-        document.getElementById('birthdayPage').style.display = 'flex';
+        // Show welcome page first
+        document.getElementById('welcomePage').style.display = 'flex';
+        document.getElementById('birthdayPage').style.display = 'none';
         document.getElementById('proposalPage').style.display = 'none';
         document.getElementById('codeUnlockPage').style.display = 'none';
         document.getElementById('maintenancePage').style.display = 'none';
-
-        const birthdayMusic = document.getElementById('birthdayMusic');
-        const birthdayPage = document.getElementById('birthdayPage');
-        let musicStarted = false;
-        
-        // Start music on first user interaction with the birthday page
-        const startMusicOnInteraction = function() {
-            if (!musicStarted && birthdayMusic) {
-                birthdayMusic.muted = false;
-                birthdayMusic.play().catch(err => {
-                    console.log('Birthday music play prevented:', err);
-                });
-                musicStarted = true;
-            }
-            // Remove listener after first interaction
-            birthdayPage.removeEventListener('click', startMusicOnInteraction);
-            birthdayPage.removeEventListener('touchstart', startMusicOnInteraction);
-        };
-        
-        // Add event listeners for user interaction
-        birthdayPage.addEventListener('click', startMusicOnInteraction);
-        birthdayPage.addEventListener('touchstart', startMusicOnInteraction);
-        
-        // Birthday button handler
-        document.getElementById('birthdayBtn').addEventListener('click', function() {
-            // Stop birthday music when continuing
-            birthdayMusic.pause();
-            birthdayMusic.currentTime = 0;
-            
-            document.getElementById('birthdayPage').style.display = 'none';
-            document.getElementById('codeUnlockPage').style.display = 'flex';
-            startCodeUnlock();
-        });
     }
     
     // Music will start after code is unlocked
@@ -119,8 +160,17 @@ function startCodeUnlock() {
             
             // Transition to proposal page after 2 seconds
             setTimeout(function() {
+                console.log('Transitioning to proposal page');
                 document.getElementById('codeUnlockPage').style.display = 'none';
-                document.getElementById('proposalPage').style.display = 'block';
+                document.getElementById('welcomePage').style.display = 'none';
+                document.getElementById('birthdayPage').style.display = 'none';
+                document.getElementById('maintenancePage').style.display = 'none';
+                
+                const proposalPage = document.getElementById('proposalPage');
+                if (proposalPage) {
+                    proposalPage.style.display = 'flex';
+                    console.log('Set proposalPage to flex');
+                }
                 startProposalPage();
             }, 2000);
         } else {
