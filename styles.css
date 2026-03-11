@@ -258,7 +258,7 @@ body {
 /* Content styling */
 .content {
     background: transparent;
-    padding: 0 60px 80px 60px;
+    padding: 0 40px 60px 40px;
     border-radius: 0;
     box-shadow: none;
     backdrop-filter: none;
@@ -278,8 +278,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    font-size: 6rem;
-    opacity: 0.6;
+    font-size: 5rem;
+    opacity: 0.35;
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -308,9 +308,9 @@ body {
 }
 
 .content h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 900;
-    margin: 1rem 0 2.5rem 0;
+    margin: 1.5rem 0 2rem 0;
     line-height: 1.2;
     letter-spacing: 1px;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -325,9 +325,9 @@ body {
 }
 
 .content p {
-    font-size: 1.3rem;
-    line-height: 2;
-    margin: 0 0 2.5rem 0;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 0 0 2rem 0;
     color: rgba(255, 255, 255, 0.98);
     text-align: center;
     letter-spacing: 0.5px;
@@ -769,13 +769,26 @@ button {
     }
     
     .content {
-        padding: 35px 20px;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.18);
-        backdrop-filter: blur(15px) saturate(180%);
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                    inset 0 0 30px rgba(255, 107, 157, 0.25);
+        padding: 25px 18px 50px 18px;
+        gap: 0;
+    }
+    
+    .content h1 {
+        font-size: 2.2rem;
+        margin: 1rem 0 1.5rem 0;
+        letter-spacing: 0.5px;
+    }
+    
+    .content p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    .content::after {
+        font-size: 3rem;
+        opacity: 0.2;
+        line-height: 1.5;
     }
     
     .heart-container {
@@ -922,6 +935,22 @@ button {
     .heart-placeholders {
         display: none;
     }
+    
+    .butterfly {
+        font-size: 1.5em;
+        opacity: 0.3;
+    }
+    
+    .continue-btn {
+        padding: 14px 30px;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .continue-btn:active {
+        transform: translateY(-2px) scale(0.98);
+    }
 }
 
 /* Extra small devices */
@@ -934,6 +963,22 @@ button {
     p {
         font-size: 1.05em;
         line-height: 1.7;
+    }
+    
+    .content h1 {
+        font-size: 1.9rem;
+        margin: 0.8rem 0 1.2rem 0;
+    }
+    
+    .content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin: 0 0 1.2rem 0;
+    }
+    
+    .content::after {
+        font-size: 2.5rem;
+        opacity: 0.15;
     }
     
     .birthday-content h1 {
@@ -963,7 +1008,7 @@ button {
     }
     
     .content {
-        padding: 30px 18px;
+        padding: 20px 15px 40px 15px;
     }
     
     .birthday-btn {
@@ -974,6 +1019,28 @@ button {
     
     .birthday-heart-animation {
         font-size: 4.5em;
+    }
+    
+    .continue-btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+        margin-top: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .unlock-content {
+        padding: 30px 20px;
+        max-width: 90vw;
+    }
+    
+    .unlock-content h1 {
+        font-size: 2.2em;
+    }
+    
+    .code-input {
+        padding: 12px 15px;
+        font-size: 1em;
+        min-width: 150px;
     }
 }
 
