@@ -1079,7 +1079,7 @@ h2 {
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
-    display: flex !important;
+    display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     z-index: 2000;
@@ -1088,10 +1088,14 @@ h2 {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
     padding-top: 2rem;
+}
+
+.welcome-page[style*="display: none"] {
+    display: none !important;
+    z-index: -1 !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
 .welcome-page::-webkit-scrollbar {
