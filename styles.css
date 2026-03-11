@@ -139,7 +139,7 @@ body {
     min-height: min-content;
     padding-top: 1rem;
     padding-bottom: 3rem;
-    margin-top: max(4rem, 10vh);
+    margin-top: max(5rem, 15vh);
 }
 
 /* Welcome Page */
@@ -159,7 +159,7 @@ body {
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.1);
-    margin-top: max(4rem, 10vh);
+    margin-top: max(5rem, 15vh);
 }
 
 /* Code Unlock Page */
@@ -173,7 +173,7 @@ body {
     border-radius: 30px;
     backdrop-filter: blur(15px) saturate(180%);
     border: 2px solid rgba(255, 255, 255, 0.3);
-    margin-top: max(4rem, 10vh);
+    margin-top: max(5rem, 15vh);
 }
 
 /* Proposal Page */
@@ -298,14 +298,14 @@ p {
 /* Large screens */
 @media (min-width: 1024px) {
     .page-content {
-        margin-top: max(5rem, 12vh);
+        margin-top: max(6rem, 16vh);
     }
 }
 
 /* Tablets and medium screens */
 @media (max-width: 1023px) and (min-width: 769px) {
     .page-content {
-        margin-top: max(4.5rem, 11vh);
+        margin-top: max(5.5rem, 14vh);
     }
 }
 
@@ -336,17 +336,17 @@ p {
     
     .page-content {
         padding: 1.5rem;
-        margin-top: max(3.5rem, 9vh);
+        margin-top: max(4.5rem, 12vh);
     }
     
     #birthdayPage .page-content {
         padding: 30px 20px;
-        margin-top: max(3.5rem, 9vh);
+        margin-top: max(4.5rem, 12vh);
     }
     
     #codeUnlockPage .page-content {
         padding: 25px 20px;
-        margin-top: max(3.5rem, 9vh);
+        margin-top: max(4.5rem, 12vh);
     }
     
     .code-input {
@@ -383,17 +383,17 @@ p {
     
     .page-content {
         padding: 1rem;
-        margin-top: max(2.5rem, 8vh);
+        margin-top: max(3.5rem, 11vh);
     }
     
     #birthdayPage .page-content {
         padding: 20px 15px;
-        margin-top: max(2.5rem, 8vh);
+        margin-top: max(3.5rem, 11vh);
     }
     
     #codeUnlockPage .page-content {
         padding: 20px 15px;
-        margin-top: max(2.5rem, 8vh);
+        margin-top: max(3.5rem, 11vh);
     }
     
     .btn-primary {
@@ -419,11 +419,11 @@ p {
     }
     
     .page-content {
-        margin-top: max(2rem, 7vh);
+        margin-top: max(2.5rem, 10vh);
     }
     
     #birthdayPage .page-content {
         padding: 20px 12px;
-        margin-top: max(2rem, 7vh);
+        margin-top: max(2.5rem, 10vh);
     }
 }
