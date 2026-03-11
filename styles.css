@@ -1073,10 +1073,16 @@ h2 {
     align-items: center;
     z-index: 2000;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
+}
+
+.welcome-page::-webkit-scrollbar {
+    display: none;
 }
 
 .welcome-content {
@@ -1195,10 +1201,16 @@ h2 {
     align-items: center;
     z-index: 2000;
     flex-direction: column;
-    overflow: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
+}
+
+.birthday-page::-webkit-scrollbar {
+    display: none;
 }
 
 .birthday-page[style*="display: flex"] {
