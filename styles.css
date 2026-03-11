@@ -1220,10 +1220,9 @@ h2 {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
     padding-top: 2rem;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 .birthday-page::-webkit-scrollbar {
@@ -1276,6 +1275,7 @@ h2 {
     max-width: 600px;
     width: 90%;
     margin: 50px auto;
+    will-change: transform, opacity;
 }
 
 .birthday-content h1 {
