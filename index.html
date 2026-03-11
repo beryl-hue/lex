@@ -7,108 +7,89 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#e73c7e">
     <title>A Special Question ❤️</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pattern.css@0.0.6/lib/pattern.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Birthday Music -->
+    <!-- Audio -->
     <audio id="birthdayMusic" loop autoplay muted>
         <source src="123.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
-    
-    <!-- Background Music -->
     <audio id="bgMusic" loop autoplay muted>
         <source src="The Love Bug Has Bitten (Background Score) [u-Mu8JVuFd0].mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
     </audio>
-    
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    
-    <!-- Decorative Heart Placeholders -->
-    <div class="heart-placeholders">
-        <div class="placeholder-heart" style="top: 10%; left: 10%;">❤️</div>
-        <div class="placeholder-heart" style="top: 20%; left: 85%;">💕</div>
-        <div class="placeholder-heart" style="top: 40%; left: 5%;">💖</div>
-        <div class="placeholder-heart" style="top: 60%; left: 90%;">💗</div>
-        <div class="placeholder-heart" style="top: 80%; left: 15%;">💓</div>
-        <div class="placeholder-heart" style="top: 85%; left: 80%;">💝</div>
-        <div class="placeholder-heart" style="top: 15%; left: 50%;">💞</div>
-        <div class="placeholder-heart" style="top: 70%; left: 50%;">💘</div>
-    </div>
-    
-    <!-- Welcome Page -->
-    <div class="welcome-page" id="welcomePage">
-        <div class="welcome-content">
-            <div class="gift-box">🎁</div>
-            <h1>I have something special for you...</h1>
-            <p>Click to unwrap your birthday surprise! 🎉</p>
-            <button class="welcome-btn" id="welcomeBtn" onclick="unwrapGift()">Unwrap 💕</button>
-            <p class="headphones-note">🎧 For better experience, use headphones!</p>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="heart-placeholders">
+            <div class="placeholder-heart" style="top: 10%; left: 10%;">❤️</div>
+            <div class="placeholder-heart" style="top: 20%; left: 85%;">💕</div>
+            <div class="placeholder-heart" style="top: 40%; left: 5%;">💖</div>
+            <div class="placeholder-heart" style="top: 60%; left: 90%;">💗</div>
+            <div class="placeholder-heart" style="top: 80%; left: 15%;">💓</div>
+            <div class="placeholder-heart" style="top: 85%; left: 80%;">💝</div>
+            <div class="placeholder-heart" style="top: 15%; left: 50%;">💞</div>
+            <div class="placeholder-heart" style="top: 70%; left: 50%;">💘</div>
         </div>
     </div>
-    
+
+    <!-- Welcome Page -->
+    <div class="page active" id="welcomePage">
+        <div class="page-content">
+            <div class="emoji-xl">🎁</div>
+            <h1>I have something special for you...</h1>
+            <p>Click to unwrap your birthday surprise! 🎉</p>
+            <button class="btn-primary" onclick="showPage('birthdayPage')">Unwrap 💕</button>
+            <p class="small-text">🎧 For better experience, use headphones!</p>
+        </div>
+    </div>
+
     <!-- Birthday Page -->
-    <div class="birthday-page" id="birthdayPage" style="display: none;">
-        <div class="birthday-content">
-            <div class="birthday-heart-animation">🎂</div>
+    <div class="page bg-birthday" id="birthdayPage">
+        <div class="page-content">
+            <div class="emoji-xl">🎂</div>
             <h1>Happy Birthday! 🎉</h1>
             <p>Today is a special day because you were born, and the world became a more beautiful place.</p>
             <p>Every moment with you is a gift, and I'm so grateful for you.</p>
             <p>Have the most amazing birthday celebration! 🎊💕</p>
-            <button class="birthday-btn" id="birthdayBtn" onclick="continueBirthday()">Let's Continue... 💖</button>
+            <button class="btn-primary" onclick="showPage('codeUnlockPage')">Let's Continue... 💖</button>
         </div>
     </div>
-    
+
     <!-- Code Unlock Page -->
-    <div class="code-unlock-page" id="codeUnlockPage" style="display: none;">
-        <div class="unlock-content">
-            <div class="unlock-heart-animation">🔐</div>
+    <div class="page bg-unlock" id="codeUnlockPage">
+        <div class="page-content">
+            <div class="emoji-xl">🔐</div>
             <h1>Unlock Your Special Message 💌</h1>
             <p>I've hidden something special for you. Enter the code to unlock it!</p>
             <div class="code-input-container">
-                <input type="text" id="codeInput" class="code-input" placeholder="Enter the code..." autofocus>
-                <button class="unlock-btn" id="unlockBtn">Unlock 💕</button>
+                <input type="text" id="codeInput" class="code-input" placeholder="Enter the code...">
+                <button class="btn-primary" onclick="verifyCode()">Unlock 💕</button>
             </div>
-            <p id="codeError" class="code-error" style="display: none;">Oops! That's not the correct code. Try again! ❌</p>
+            <p id="codeError" class="error" style="display: none;">Oops! That's not the correct code. Try again! ❌</p>
         </div>
     </div>
-    
-    <!-- Maintenance Page -->
-    <div class="maintenance-page" id="maintenancePage" style="display: none;">
-        <div class="maintenance-content">
-            <div class="maintenance-icon">⚠️</div>
-            <h1>Oops! System Crash 💔</h1>
+
+    <!-- Love Letter Page -->
+    <div class="page bg-proposal" id="proposalPage">
+        <div class="page-content">
+            <h1>Hey <span id="herName">Beautiful</span>! 💕</h1>
+            <p>From the moment you entered my life, everything changed in the most beautiful way. Your smile brings me peace, your presence feels like home, and your happiness matters to me more than you know.</p>
+            
+            <p>Loving you feels natural and real — not rushed, not forced, just right. I want to be the person who stands beside you in your happiest moments and holds your hand through the difficult ones.</p>
+            
+            <p>I want you to know this from my heart — I would never play with your feelings or take your trust lightly. I believe love should be honest, loyal, and safe. If you choose me, I promise transparency, respect, and a heart that stays true — even when things aren't easy.</p>
+            
+            <p>I don't promise perfection, but I promise effort, loyalty, and consistency. I want to grow with you, dream with you, and build something real — something that never makes you doubt your worth.</p>
+            
+            <p>So today, with all my heart, I'm asking you…</p>
+            
+            <button class="btn-primary" id="continueBtn" onclick="continueToCouplePage()">Continue 💕</button>
         </div>
     </div>
-    
-    <div class="container" id="proposalPage" style="display: none;">
-        <div class="heart-container">
-            <div class="heart"></div>
-        </div>
-        
-        <div class="content">
-            <h1 class="fade-in">Hey <span id="herName">Beautiful</span>! 💕</h1>
-            <p class="fade-in-delay-1">From the moment you entered my life, everything changed in the most beautiful way. Your smile brings me peace, your presence feels like home, and your happiness matters to me more than you know.</p>
-            
-            <p class="fade-in-delay-2">Loving you feels natural and real — not rushed, not forced, just right. I want to be the person who stands beside you in your happiest moments and holds your hand through the difficult ones.</p>
-            
-            <p class="fade-in-delay-3">I want you to know this from my heart — I would never play with your feelings or take your trust lightly. I believe love should be honest, loyal, and safe. If you choose me, I promise transparency, respect, and a heart that stays true — even when things aren't easy.</p>
-            
-            <p class="fade-in-delay-4">I don't promise perfection, but I promise effort, loyalty, and consistency. I want to grow with you, dream with you, and build something real — something that never makes you doubt your worth.</p>
-            
-            <p class="fade-in-delay-5">So today, with all my heart, I'm asking you…</p>
-            
-            <button class="continue-btn" id="continueBtn">Continue 💕</button>
-        </div>
-        
-        <div class="floating-hearts"></div>
-    </div>
-    
-    <div class="fireworks" id="fireworks"></div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
