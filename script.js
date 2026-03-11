@@ -34,11 +34,27 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('codeUnlockPage').style.display = 'none';
         document.getElementById('maintenancePage').style.display = 'none';
 
-        // Unmute birthday music
         const birthdayMusic = document.getElementById('birthdayMusic');
-        if (birthdayMusic) {
-            birthdayMusic.muted = false;
-        }
+        const birthdayPage = document.getElementById('birthdayPage');
+        let musicStarted = false;
+        
+        // Start music on first user interaction with the birthday page
+        const startMusicOnInteraction = function() {
+            if (!musicStarted && birthdayMusic) {
+                birthdayMusic.muted = false;
+                birthdayMusic.play().catch(err => {
+                    console.log('Birthday music play prevented:', err);
+                });
+                musicStarted = true;
+            }
+            // Remove listener after first interaction
+            birthdayPage.removeEventListener('click', startMusicOnInteraction);
+            birthdayPage.removeEventListener('touchstart', startMusicOnInteraction);
+        };
+        
+        // Add event listeners for user interaction
+        birthdayPage.addEventListener('click', startMusicOnInteraction);
+        birthdayPage.addEventListener('touchstart', startMusicOnInteraction);
         
         // Birthday button handler
         document.getElementById('birthdayBtn').addEventListener('click', function() {
