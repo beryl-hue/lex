@@ -115,6 +115,7 @@ body {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    scroll-padding-top: 8rem;
     padding: 2rem;
 }
 
@@ -186,6 +187,8 @@ h1 {
     font-size: 3.5rem;
     font-weight: 900;
     margin-bottom: 30px;
+    margin-top: 2rem;
+    padding-top: 2rem;
     letter-spacing: 2px;
     text-shadow: var(--text-shadow);
     animation: fadeIn 0.8s ease-out;
@@ -323,6 +326,8 @@ p {
     h1 {
         font-size: 2.5em;
         margin-bottom: 20px;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
     }
     
     p {
@@ -370,6 +375,8 @@ p {
     
     h1 {
         font-size: 2em;
+        margin-top: 1rem;
+        padding-top: 1rem;
     }
     
     p {
@@ -407,6 +414,8 @@ p {
     h1 {
         font-size: 1.7em;
         margin-bottom: 15px;
+        margin-top: 0.75rem;
+        padding-top: 0.75rem;
     }
     
     p {
