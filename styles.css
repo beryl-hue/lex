@@ -435,4 +435,9 @@ p {
         padding: 20px 12px;
         margin-top: max(2.5rem, 10vh);
     }
+    
+    #codeUnlockPage .page-content {
+        padding: 15px 12px;
+        margin-top: max(2.5rem, 10vh);
+    }
 }
