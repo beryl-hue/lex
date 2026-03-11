@@ -1208,9 +1208,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
-    background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
+    background: linear-gradient(-45deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 100%);
     display: none;
     justify-content: flex-start;
     align-items: center;
@@ -1223,8 +1221,6 @@ h2 {
     padding-top: 2rem;
     backface-visibility: hidden;
     -webkit-font-smoothing: antialiased;
-    will-change: auto;
-    contain: layout;
 
 .birthday-page::-webkit-scrollbar {
     display: none;
@@ -1267,7 +1263,6 @@ h2 {
     padding: 60px 40px;
     border-radius: 30px;
     backdrop-filter: blur(15px) saturate(180%);
-    animation: slideIn 0.8s ease-out forwards;
     border: 2px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3),
                 inset 0 0 40px rgba(255, 255, 255, 0.1);
@@ -1276,7 +1271,6 @@ h2 {
     max-width: 600px;
     width: 90%;
     margin: 50px auto;
-    will-change: transform, opacity;
 }
 
 .birthday-content h1 {
@@ -1289,7 +1283,7 @@ h2 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: fadeIn 1s ease-out 0.2s backwards, gradientText 4s ease infinite 1s;
+    animation: fadeIn 0.6s ease-out 0.1s backwards;
     letter-spacing: 2px;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
@@ -1299,7 +1293,7 @@ h2 {
     margin-bottom: 20px;
     line-height: 1.7;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 1.2s ease-out 0.4s backwards;
+    animation: fadeIn 0.6s ease-out 0.2s backwards;
     font-family: 'Playfair Display', 'Georgia', serif;
     font-weight: 400;
     letter-spacing: 0.5px;
@@ -1308,7 +1302,7 @@ h2 {
 .birthday-heart-animation {
     font-size: 6em;
     margin-bottom: 30px;
-    animation: bounce 1s ease-in-out infinite 0.8s;
+    animation: bounce 1.2s ease-in-out infinite;
 }
 
 .birthday-btn {
